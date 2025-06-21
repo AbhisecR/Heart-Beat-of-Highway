@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 from deepface import DeepFace
 from blockchain import log_emotion_to_blockchain
+from v2x import broadcast_emotion_alert
 
 # ========== EMOTION DETECTION SETUP ==========
 mp_face_detection = mp.solutions.face_detection
@@ -40,6 +41,7 @@ while True:
 
                 # 🔐 Log emotion securely to blockchain
                 log_emotion_to_blockchain(emotion)
+                broadcast_emotion_alert(emotion)
 
             except:
                 emotion = "Emotion error"
