@@ -23,4 +23,14 @@ def log_emotion_to_blockchain(emotion):
     prev_hash = blockchain[-1].hash
     new_block = EmotionBlock(emotion, prev_hash)
     blockchain.append(new_block)
+    
+    # Print to console
     print(f"[LOGGED] Emotion: {emotion} | Hash: {new_block.hash[:10]}...")
+
+    # Append to file
+    with open("emotion_blockchain_log.txt", "a") as f:
+        f.write(f"Timestamp: {new_block.timestamp}\n")
+        f.write(f"Emotion: {new_block.emotion}\n")
+        f.write(f"Previous Hash: {new_block.prev_hash}\n")
+        f.write(f"Hash: {new_block.hash}\n")
+        f.write("-" * 40 + "\n")
